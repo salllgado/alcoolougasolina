@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> {
     var gasPrice = double.tryParse(_gasolinaEditingController.text);
 
     if (alcoolPrice == null || gasPrice == null) {
-      showAlert("Números invalidos, tente novamente");
+      showAlert(Strings.main_dialog_error_message);
     }
     else {
       var result = (alcoolPrice/gasPrice);
@@ -60,7 +60,7 @@ class _MainPageState extends State<MainPage> {
           actions: <Widget>[
             FlatButton(
               child: Text(
-                "Recomeçar",
+                "OK",
                 style: TextStyle(
                   fontSize: 16,
                 ),
