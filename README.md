@@ -1,6 +1,6 @@
-# alcoolougasolina
+# Alcool ou Gasolina (Flutter application)
 
-A new Flutter application.
+A new Flutter application to help user with fuel.
 
 ## Getting Started
 
