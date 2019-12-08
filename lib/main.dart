@@ -63,6 +63,7 @@ class _MainPageState extends State<MainPage> {
                 "OK",
                 style: TextStyle(
                   fontSize: 16,
+                  color: Colors.green
                 ),
               ),
               onPressed: () {
