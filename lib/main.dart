@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Strings.dart';
 import 'ColorsExtension.dart';
+import 'HEX.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -22,15 +23,56 @@ class _MainPageState extends State<MainPage> {
   TextEditingController _gasolinaEditingController = TextEditingController();
 
   void handlerButtonTapped() {
-    print(_gasolinaEditingController.text);
-  }
+    var alcoolPrice = double.tryParse(_alcoolEditingController.text);
+    var gasPrice = double.tryParse(_gasolinaEditingController.text);
 
-  void handlerText(String text) {
-//    if (text.length > 3) {
-//      if (text.contains('.') == false ) {
-//        _gasolinaEditingController.text = '.$text';
-//      }
-//    }
+    if (alcoolPrice == null || gasPrice == null) {
+      showAlert("Números invalidos, tente novamente");
+    }
+    else {
+      var result = (alcoolPrice/gasPrice);
+      var resultString = result >= 0.7 ? "Gasolina" : "Alcool";
+        var percent = (result * 100).round();
+        showAlert("Abasteça com $resultString, o rendimento é de $percent%");
+      }
+    }
+
+  void showAlert(String message) {
+    showDialog(
+      context: context,
+      builder:  (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            "Resultado",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          content: Text(
+            message,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(
+                "Recomeçar",
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -40,7 +82,7 @@ class _MainPageState extends State<MainPage> {
           title: Text(
             Strings.main_screen_title,
             style: TextStyle(
-              color: HexColor("ebc200")
+              color: HexColor(HEX.goldYellow)
             ),
           ),
           backgroundColor: Colors.green
@@ -94,7 +136,6 @@ class _MainPageState extends State<MainPage> {
                       maxLength: 5,
                       keyboardType: TextInputType.number,
                       maxLengthEnforced: true,
-                      onChanged: handlerText,
                       controller: _gasolinaEditingController,
                     ),
                   ),
