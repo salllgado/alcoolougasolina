@@ -149,6 +149,9 @@ class _MainPageState extends State<MainPage> {
                       color: Colors.green,
                       textTheme: ButtonTextTheme.primary,
                       onPressed: handlerButtonTapped,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32)
+                      ),
                     ),
                   )
                 ],
